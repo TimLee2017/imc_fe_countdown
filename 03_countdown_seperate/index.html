@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>限时抢</title>
+</head>
+<body>
+    <div class="content3">
+        <div class="time">还剩 <span id="leftTime"></span></div>
+    </div>
+    <script>
+        window.onload = function() {
+            showTime();
+            
+        }
+
+        function showTime(){
+            var currentTime = new Date()
+            var endTime = new Date('2018/1/15,12:20:12')
+            var leftTime = parseInt((endTime.getTime() - currentTime.getTime())/1000);
+
+            var day = parseInt(leftTime / (24*60*60));
+            var hour = parseInt(leftTime / (60*60) % 24)
+            var minute = parseInt(leftTime / 60 % 60)
+            var second = parseInt(leftTime % 60)
+
+            minute = checkTime(minute)
+            second = checkTime(second)
+
+            // console.log(second)
+            document.getElementById('leftTime').innerHTML = day + '天' + hour + '小时' + minute + '分' + second + '秒';
+            if (leftTime<=0) {
+                document.getElementById('leftTime').innerHTML = '团购结束';
+            } else {
+                setTimeout(showTime, 500);
+            }
+            
+        }
+
+        function checkTime(i){
+            if(i<10){
+                i = '0' + i;
+            }
+            return i;
+        }
+    </script>
+</body>
+</html>
