@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示年月日</title>
+    <script>
+        window.onload = function() {
+           
+            showTime();
+            // setInterval(showTime,500)
+        }
+        function showTime(){
+            var myDate = new Date();
+            var year = myDate.getFullYear();
+            var month = myDate.getMonth() + 1;
+            var date = myDate.getDate();
+            var weekday = new Array(7);
+            weekday[0] = "星期日";
+            weekday[1] = "星期一";
+            weekday[2] = "星期二";
+            weekday[3] = "星期三";
+            weekday[4] = "星期四";
+            weekday[5] = "星期五";
+            weekday[6] = "星期六";
+            var day = weekday[myDate.getDay()];
+
+            var hour = myDate.getHours();
+            var minute = myDate.getMinutes();
+            var second = myDate.getSeconds();
+            minute = checkTime(minute);
+            second = checkTime(second);
+
+
+            document.getElementById('show').innerHTML = year + '年' + month + '月' + date + '日  ' + day + ' ' + hour + ':' + minute + ':' + second;
+            setTimeout(showTime, 500)
+        }
+        function checkTime(aTime){
+            if (aTime<10) {
+                aTime = '0' + aTime;
+            }
+            return aTime;
+        }
+    </script>
+</head>
+<body>
+    <div class="content1">
+        <div id="show">显示年月日的位置</div>
+    </div>
+</body>
+</html>
